@@ -82,7 +82,7 @@ class Patient extends Model
             'name' => fake()->name(),
             'surname' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
-            'treatments' => $this->getTreatmentsDataArray()
+            'treatments' => $this->getTreatmentsDataArray($index)
         ];
     }
 
@@ -96,12 +96,13 @@ class Patient extends Model
      * @return array
      */
 
-    public function getTreatmentRow($index)
+    public function getTreatmentRow($index, $patientIndex)
     {
         $treatmentsArray = $this->getTreatmentsArray();
         return [
             'id' => $index,
-            'treatmentName' => $treatmentsArray[array_rand($treatmentsArray)]
+            'treatmentName' => $treatmentsArray[array_rand($treatmentsArray)],
+            'idPatient' => $patientIndex
         ];
     }
 
@@ -113,13 +114,13 @@ class Patient extends Model
      * @return array
      */
 
-    public function getTreatmentsDataArray()
+    public function getTreatmentsDataArray($index)
     {
         $data = [];
 
         for ($i = 1; $i < rand(1, 10); $i++)
         {
-            $data[] = $this->getTreatmentRow($i);
+            $data[] = $this->getTreatmentRow($i, $index);
         }
 
         return $data;

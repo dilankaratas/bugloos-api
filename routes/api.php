@@ -4,6 +4,8 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PatientController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use OpenApi\Annotations as OA;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -15,6 +17,17 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
+
+/**
+ * @OA\Info(
+ *     version="1.0.0",
+ *     title="API Documentation",
+ *     description="API endpoints documentation",
+ *     @OA\Contact(
+ *         email="info@example.com"
+ *     )
+ * )
+ */
 
 
 Route::post('/login', [AuthController::class, 'login']);

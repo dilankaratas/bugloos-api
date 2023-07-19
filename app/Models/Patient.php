@@ -11,6 +11,12 @@ class Patient extends Model
 
     private static $instance;
 
+    /**
+     * Get the singleton instance of the Patient model.
+     *
+     * @return \App\Models\Patient
+     */
+
     public static function getInstance() {
         if (!isset(self::$instance)) {
             self::$instance = new Patient();
@@ -18,6 +24,13 @@ class Patient extends Model
         return self::$instance;
     }
 
+    /**
+     * Get an array of patient data.
+     *
+     * This method generates an array of patient data, including 'id', 'name', 'surname', 'email', and 'treatments'.
+     *
+     * @return array
+     */
 
     public function getDataArray()
     {
@@ -30,6 +43,14 @@ class Patient extends Model
 
         return $data;
     }
+
+    /**
+     * Get an array of treatment names.
+     *
+     * This method returns an array of treatment names that can be assigned to patients.
+     *
+     * @return array
+     */
 
     public function getTreatmentsArray()
     {
@@ -44,6 +65,16 @@ class Patient extends Model
         ];
     }
 
+
+    /**
+     * Get an array representing a patient row.
+     *
+     * This method generates an array representing a single patient row with 'id', 'name', 'surname', 'email', and 'treatments' properties.
+     *
+     * @param int $index
+     * @return array
+     */
+
     public function getRowArray($index)
     {
         return [
@@ -55,6 +86,16 @@ class Patient extends Model
         ];
     }
 
+
+    /**
+     * Get an array representing a treatment row.
+     *
+     * This method generates an array representing a single treatment row with 'id' and 'treatmentName' properties.
+     *
+     * @param int $index
+     * @return array
+     */
+
     public function getTreatmentRow($index)
     {
         $treatmentsArray = $this->getTreatmentsArray();
@@ -63,6 +104,14 @@ class Patient extends Model
             'treatmentName' => $treatmentsArray[array_rand($treatmentsArray)]
         ];
     }
+
+    /**
+     * Get an array of treatment data.
+     *
+     * This method generates an array of treatment data by calling getTreatmentRow() method for a random number of times.
+     *
+     * @return array
+     */
 
     public function getTreatmentsDataArray()
     {
